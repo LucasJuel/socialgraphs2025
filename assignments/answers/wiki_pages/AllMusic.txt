@@ -1,0 +1,81 @@
+{{Short description|American online music database}}
+{{About|the online database|the album by Warne Marsh|All Music (album)}}
+{{update|date=July 2024}}
+{{Use mdy dates|date=June 2023}}
+{{Use American English|date=May 2025}}
+{{Infobox website
+ |name= AllMusic
+ |logo= [[File:AllMusic Logo.svg|frameless|45px]]&nbsp;[[File:AllMusic Text Logo.svg|180px|frameless]]
+ |screenshot =
+ |logocaption= [[Logotype]] and [[wordmark]] {{nowrap|since July 2013}}
+ |url= {{URL|https://www.allmusic.com/|allmusic.com}}
+ |commercial= Yes
+ |type= [[List of online music databases|Online database]] for music albums, artists and songs; reviews and biographies
+ |registration= Optional
+ |language= English
+ |programming_language =
+ |owner= [[RhythmOne]] (since 2015)<ref name="rhythmone">{{cite web |url=https://investor.rhythmone.com/newsroom/2015/04/16/blinkx-acquires-all-media-network-llc |title=blinkx acquires All Media Network, LLC |website=Newsroom – RhythmOne |access-date=August 22, 2019 |archive-url=https://web.archive.org/web/20171103022705/https://investor.rhythmone.com/newsroom/2015/04/16/blinkx-acquires-all-media-network-llc |archive-date=November 3, 2017 |date=April 16, 2015 |url-status=unfit }}</ref>
+ |author= [[Michael Erlewine]]
+ |launch_date= {{start date and age|1991}} (as All Music Guide)
+ |current_status= [[Online]]
+}}
+
+'''AllMusic''' (previously known as '''All-Music Guide''' and '''AMG''') is an American [[online database|online music database]]. It catalogs more than three million [[album]] entries and 30 million tracks, as well as information on [[Musical artist|musicians]] and [[Musical ensemble|bands]]. Initiated in 1991, the database was first made available on the Internet in 1994.<ref name="Wired" /><ref name="Metro" /> AllMusic is owned by [[RhythmOne]].
+
+==History==
+AllMusic was launched as ''All-Music Guide'' by [[Michael Erlewine]], a "compulsive archivist, noted astrologer, Buddhist scholar, and musician". He became interested in using computers for his astrological work in the mid-1970s and founded a software company, Matrix, in 1977. In the early 1990s, as [[compact disc]]s (CDs) replaced [[LP record|LPs]] and [[cassette (format)|cassettes]] as the dominant format for recorded music, Erlewine purchased what he thought was a CD of early recordings by [[Little Richard]]. After buying it, he discovered it was a "flaccid latter-day rehash".<ref name="Metro" /> Frustrated with the labeling, he researched using [[metadata]] to create a music guide.<ref name="Videoland book">{{cite book |last1=Herbert |first1=Daniel |title=Videoland: Movie Culture at the American Video Store |date=January 24, 2014 |publisher=University of California Press |location=Los Angeles, CA |isbn=978-0520279636 |page=209 |url=https://books.google.com/books?id=lV98AgAAQBAJ&q=All+Music+Guide+Michael+Erlewine+founded+astrologer&pg=PA209 |access-date=July 20, 2017}}</ref> In 1990, in [[Big Rapids, Michigan]], he founded ''All Music Guide'' with a goal to create an open-access database that included every recording "since [[Enrico Caruso]] gave the industry its first big boost".<ref name="Wired" />
+
+The first ''All Music Guide'', published in 1992, was a 1,200-page reference book, packaged with a CD-ROM, titled ''All Music Guide: The Best CDs, Albums & Tapes: The Expert's Guide to the Best Releases from Thousands of Artists in All Types of Music''.<ref name="AllMusic1stEdition">{{cite book | last1=Erlewine | first1=Michael | last2=Bultman | first2=Scott | title=All Music Guide: The Best Cds, Albums & Tapes : The Experts' Guide to the Best Releases from Thousands of Artists in All Types of Music | publisher=Backbeat Books | date=1992 | isbn=978-0-87930-264-1 | oclc=27307106 }}</ref> Its first online version, in 1994, was a text-based [[Gopher (protocol) |Gopher]] site.<ref name="Wired" /><ref name="Vice history">{{cite news |last1=Nosowitz |first1=Dan |title=The Story of AllMusic, Which Predates the World Wide Web |url=https://www.vice.com/en/article/the-internets-most-complete-guide-to-music/ |access-date=June 22, 2017 |work=[[Vice (magazine)|Vice]] |date=January 30, 2015}}</ref> It moved to the [[World Wide Web]] as [[web browser]]s became more user-friendly.<ref name="Metro" />
+
+Erlewine hired a database engineer, [[Vladimir Bogdanov (editor)|Vladimir Bogdanov]], to design the ''All Music Guide'' framework, and recruited his nephew, writer [[Stephen Thomas Erlewine]], to develop editorial content. In 1993, Chris Woodstra joined the staff as an engineer. A "record geek" who had written for alternative weeklies and fanzines, his main qualification was an "encyclopedic knowledge of music".<ref name="Metro" /> Allmusic developed a list of 1,400 subgenres of music, a feature that became central to the site's utility. In a 2016 article in ''Tedium'', Ernie Smith wrote: "AllMusic may have been one of the most ambitious sites of the early-internet era—and it's one that is fundamental to our understanding of pop culture. Because the thing is, it doesn't just track reviews or albums. It tracks styles, genres, and subgenres, along with the tone of the music and the platforms on which the music is sold. It then connects that data together, in a way that can intelligently tell you about an entire type of music, whether a massive genre like classical, or a tiny one like [[sadcore]]."<ref name="big data smith">{{cite web |last1=Smith |first1=Ernie |title=The Big Data Jukebox |url=https://tedium.co/2016/09/20/allmusic-database-historic-importance/ |website=tedium.com |publisher=Tedium |access-date=July 26, 2017 |date=September 20, 2016}}</ref>
+
+In 1996, seeking to further develop its web-based businesses, Alliance Entertainment Corp. bought All Music from Erlewine for a reported $3.5 million. He left the company after its sale.<ref name="Metro" /> Alliance filed for bankruptcy in 1999, and its assets were acquired by [[Ron Burkle]]'s Yucaipa Equity Fund.<ref name="Videoland book" />
+
+In 1999, All Music relocated from Big Rapids to [[Ann Arbor, Michigan]], where the staff expanded from 12 to 100 people.<ref name="Metro" /> By February of that year, 350,000 albums and two million tracks had been cataloged. All Music had published biographies of 30,000 artists, 120,000 record reviews, and 300 essays written by "a hybrid of historians, critics, and passionate collectors".<ref name="Weisbard Voice">{{cite news |last1=Weisbard |first1=Eric |title=Conjunction Junction |url=https://www.villagevoice.com/1999/02/23/conjunction-junction/ |access-date=July 22, 2017 |work=[[The Village Voice]] |date=February 23, 1999}}</ref><ref name="NPR">{{cite news |last=Powers |first=Ann |date=June 3, 2015 |title=Digital Underground Who Will Make Sure the Internet's Vast Musical Archive Doesn't Disappear? |url=https://www.npr.org/sections/therecord/2015/06/03/411666224/digital-underground |work=The Record |publisher=[[NPR]] |access-date=July 20, 2017}}</ref>
+
+In late 2007, AllMusic was purchased for $72 million by [[TiVo Corporation]] (known as Macrovision at the time of the sale, and as Rovi from 2009 until 2016).<ref>{{cite web |title=Focus Article: Rovi Corporation |url=https://www.insidearbitrage.com/2012/10/weekly-focus-article-rovi-corporation-rovi/ |website=insidearbitrage.com |publisher=Inside Arbitrage |date=October 1, 2012 |access-date=September 28, 2017}}</ref> In 2012, AllMusic removed all of [[Bryan Adams]]' info from the site per a request from the artist.<ref>{{cite web |title=FAQ |url=https://www.allmusic.com/faq/topic/bryanadams |publisher=AllMusic |access-date=September 17, 2019 |language=en-us}}</ref>
+
+In 2015, AllMusic was purchased by BlinkX, later known as [[RhythmOne]].<ref>{{cite news |title=Blinkx Acquires Website Owner All Media Network For Undisclosed Amount |first=Sam |last=Unsted |publisher=London South East |date=April 16, 2015 |url=http://www.lse.co.uk/AllNews.asp?code=64stlp40&headline=Blinkx_Acquires_Website_Owner_All_Media_Network_For_Undisclosed_Amount |archive-date=May 5, 2015 |access-date=February 19, 2018 |archive-url=https://web.archive.org/web/20150505021121/http://www.lse.co.uk/AllNews.asp?code=64stlp40&headline=Blinkx_Acquires_Website_Owner_All_Media_Network_For_Undisclosed_Amount |url-status=dead }}</ref><ref name="rhythmone"/> The AllMusic database is powered by a combination of [[MySQL]] and [[MongoDB]].<ref name="ernie smith vice">{{cite news |last1=Smith |first1=Ernie |title=The Story of AllMusic, the Internet's Largest, Most Influential Music Database |url=https://www.vice.com/en/article/the-story-of-allmusic-the-internets-largest-most-influential-music-database/ |website=Vice |access-date=July 20, 2017 |date=September 16, 2016}}</ref>
+
+==The All Music Guide series==
+The All Media Network produced the ''All Music Guide: The Definitive Guide'' (at first released as ''The Experts' Guide''),<ref name="Metro">{{cite news |url=http://www2.metrotimes.com/editorial/story.asp?id=10087 |title=Make it or Break it |last=Bowe |first=Brian J. |date=January 24, 2007 |newspaper=[[Metro Times]] |access-date=February 27, 2014 |archive-date=January 15, 2013 |archive-url=https://web.archive.org/web/20130115132323/http://www2.metrotimes.com/editorial/story.asp?id=10087 |url-status=dead }}</ref> which includes a series of publications about various music genres. It was followed by the ''Required Listening'' series, and Annual guides. [[Vladimir Bogdanov (editor) |Vladimir Bogdanov]] is the president and the main editor of the series.<ref name="Billboard">{{cite magazine |url=https://www.billboard.com/biz/articles/news/1179058/allmusiccom-folding-into-allrovicom-for-one-stop-entertainment-shop |title=AllMusic.com Folding Into AllRovi.com for One-Stop Entertainment Shop |last=Bruno |first=Anthony |date=February 28, 2011 |magazine=[[Billboard (magazine) |Billboard]] |access-date=June 15, 2013}}</ref>
+
+* ''All Music Guide: The Definitive Guide to Popular Music'' (1st edition: 1992, 2nd ed: 1994, 3rd ed: 1997, 4th ed: 2001, 5th ed: 2008)
+* ''All Music Guide to Classical Music: The Definitive Guide to Classical Music'' (2004)
+* ''All Music Guide to Country: The Definitive Guide to Country Music'' (1st ed: 1997, 2nd ed: 2003)
+* ''All Music Guide to Electronica: The Definitive Guide to Electronic Music'' (2001)
+* ''All Music Guide to Hip-hop: The Definitive Guide to Rap & Hip-hop'' (2003)
+* ''[[All Music Guide to Jazz|All Music Guide to Jazz: The Definitive Guide to Jazz Music]]''&nbsp; (1st ed: 1994, 2nd ed: 1996, 3rd ed: 1998, 4th ed: 2002)
+* ''All Music Guide to Rock: The Definitive Guide to Rock, Pop, and Soul'' (1st ed: 1995, 2nd ed: 1997, 3rd ed: 2002)<ref>{{cite web |last=Toon |first=Jason |url=http://www.riverfronttimes.com/1999-07-21/music/rock-stock/ |title=Rock Stock: A book report on the best tomes to consult before buying tunes |work=[[Riverfront Times]] |date=July 21, 1999 |access-date=March 8, 2015 |archive-date=April 30, 2015 |archive-url=https://web.archive.org/web/20150430144519/http://www.riverfronttimes.com/1999-07-21/music/rock-stock/ |url-status=dead}}</ref>
+* ''All Music Guide to Soul: The Definitive Guide to R&B and Soul'' (2003)
+* ''[[All Music Guide to the Blues|All Music Guide to the Blues: The Definitive Guide to the Blues]]'' (1st ed: 1996, 2nd ed: 1999, 3rd ed: 2003)
+* ''All Music Guide Required Listening: Classic Rock'' (2007)
+* ''All Music Guide Required Listening: Contemporary Country'' (2008)
+* ''All Music Guide Required Listening: Old School Rap & Hip-hop'' (2008)
+* ''All Music Guide to the Music of 2002: Your Guide to the Recordings of the Year'' (2003)
+* ''All Music Guide to the Music of 2003: Your Guide to the Recordings of the Year'' (2004)
+
+== Reception ==
+In August 2007, ''[[PCMag|PC Magazine]]'' included AllMusic in its "Top 100 Classic Websites" list.<ref>{{cite web |url= http://pcmag.com/slideshow_viewer/0,3253,l=213025&a=212961&po=19,00.asp |title= Top 100 Classic Websites – AllMusic – Slideshow from pcmag.com |date= August 13, 2007 |last= Heater |first= Brian |work= [[PCMag |PCmag.com]] |access-date= September 24, 2013 |archive-url= https://web.archive.org/web/20170329235847/http://www.pcmag.com/slideshow_viewer/0%2C3253%2Cl%3D213025%26a%3D212961%26po%3D19%2C00.asp |archive-date= March 29, 2017 |url-status= dead}}</ref><ref name="Wired">{{cite magazine |url=https://www.wired.com/wired/archive/2.02/all.music.html |title=All Music |last=Wolf |first=Gary |date=February 1994 |magazine=[[Wired (magazine) |Wired]] |access-date=February 27, 2014}}</ref>
+
+==See also==
+* [[RhythmOne]]
+* [[AllMovie]]
+* [[SideReel]]
+
+==References==
+{{Reflist}}
+
+==External links==
+{{Commons category}}
+* {{Official website}}
+
+[[Category:AllMusic|AllMusic]]
+[[Category:1991 establishments in California]]
+[[Category:American music websites]]
+[[Category:Gopher (protocol)]]
+[[Category:Internet properties established in 1991]]
+[[Category:Mass media companies established in 1991]]
+[[Category:Online music and lyrics databases]]
+[[Category:2007 mergers and acquisitions]]
+[[Category:2015 mergers and acquisitions]]
