@@ -185,7 +185,7 @@ def parse_genre_field(genre_text: str) -> List[str]:
              'allmusic', 'www', 'com', 'http', 'https', 'ref name',
              'work', 'date', 'publisher', 'website', 'access-date',
              'archive-date', 'archive-url', 'page', 'isbn', 'year',
-             'citation', 'url-status', 'live']
+             'citation', 'url-status', 'live', 'rock music']
         
         # Check if it's actually a genre (not just punctuation or a skip term)
         if normalized and len(normalized) > 1 and normalized not in skip_terms:
@@ -363,7 +363,7 @@ if __name__ == "__main__":
         
         # Optionally save to JSON file
         import json
-        output_file = "artist_genres.json"
+        output_file = "artist_genres_without_rock.json"
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(artist_genre_dict, f, indent=2, ensure_ascii=False)
         print(f"\nResults saved to {output_file}")
