@@ -185,7 +185,7 @@ def parse_genre_field(genre_text: str) -> List[str]:
              'allmusic', 'www', 'com', 'http', 'https', 'ref name',
              'work', 'date', 'publisher', 'website', 'access-date',
              'archive-date', 'archive-url', 'page', 'isbn', 'year',
-             'citation', 'url-status', 'live', 'rock music']
+             'citation', 'url-status', 'live', 'rock music', 'rock']
         
         # Check if it's actually a genre (not just punctuation or a skip term)
         if normalized and len(normalized) > 1 and normalized not in skip_terms:
