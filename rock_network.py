@@ -1,10 +1,53 @@
 import re
 import os
+from statistics import mean
 import networkx as nx
 from pathlib import Path
 import json
+import csv
+import pickle
 
-def load_artist_list(filename='artists_clean.txt'):
+def load_labmt_lexicon(filename='Data_Set_S1.txt'):
+    """
+    Loads the labMT (S1) dataset (tab-separated) and returns {word: happiness_average(float)}.
+    Lines with '--' are skipped. Header must include 'word' and 'happiness_average'.
+    """
+    lex = {}
+    with open(filename, encoding='utf-8') as f:
+        reader = csv.DictReader(f, delimiter='\t')
+        for row in reader:
+            w = (row.get('word') or '').strip().lower()
+            v = (row.get('happiness_average') or '').strip()
+            if not w or v in ('', '--'):
+                continue
+            try:
+                lex[w] = float(v)
+            except ValueError:
+                pass
+    return lex
+
+# precompile a plain-word tokenizer (letters only, case-insensitive)
+_TOKEN_RE = re.compile(r"[A-Za-z]+")
+
+# --- 2) Compute average happiness for a page's text ---
+def page_happiness_average(text, lexicon):
+    """
+    Returns (avg_happiness, matched_count, token_count).
+    Only words found in lexicon contribute to the average.
+    """
+    if not text:
+        return (None, 0, 0)
+    tokens = _TOKEN_RE.findall(text.lower())
+    token_count = len(tokens)
+    if token_count == 0:
+        return (None, 0, 0)
+    vals = [lexicon[t] for t in tokens if t in lexicon]
+    if not vals:
+        return (None, 0, token_count)
+    return (mean(vals), len(vals), token_count)
+
+def load_artist_list(filename='New_Cleaned_Rock_Musicians.txt'):
+    print(os.getcwd())
     """Load the clean list of artists."""
     with open(filename, 'r', encoding='utf-8') as f:
         artists = [line.strip() for line in f if line.strip()]
@@ -41,7 +84,7 @@ def extract_wiki_links(text):
     
     return links
 
-def build_artist_network(artist_list, wiki_data):
+def build_artist_network(artist_list, wiki_data, lexicon):
     """Build a directed graph of artist connections."""
     
     # Create a set of valid artist names for faster lookup
@@ -104,6 +147,9 @@ def build_artist_network(artist_list, wiki_data):
         # Add word count as node attribute
         word_count = len(content.split())
         G.nodes[source_artist]['word_count'] = word_count
+
+        avg, matched, total = page_happiness_average(content, lexicon)
+        G.nodes[source_artist]['happiness_average'] = avg
         
         print(f"Processed {source_artist}: {len(artist_links)} links to other artists")
     
@@ -127,12 +173,17 @@ def clean_network(G):
     
     return G_largest
 
+
 def main():
     # Load artist list
     print("Loading artist list...")
     artists = load_artist_list()
     print(f"Loaded {len(artists)} artists")
-    
+
+    print("Loading happiness average...")
+    lexicon = load_labmt_lexicon()
+    print(f"Loaded {len(lexicon)} happiness averages.")
+
     # Load wiki pages
     print("\nLoading wiki pages...")
     wiki_data = load_wiki_pages()
@@ -140,7 +191,7 @@ def main():
     
     # Build network
     print("\nBuilding network...")
-    G, links = build_artist_network(artists, wiki_data)
+    G, links = build_artist_network(artists, wiki_data, lexicon)
     
     print(f"\nInitial network:")
     print(f"  Nodes: {G.number_of_nodes()}")
@@ -157,6 +208,10 @@ def main():
     # Save the network
     nx.write_gexf(G_clean, 'rock_artist_network.gexf')
     print("\nNetwork saved to 'rock_artist_network.gexf'")
+
+    with open('rock_artist_network.pkl', 'wb') as f:
+        pickle.dump(G_clean, f)
+    print("Network saved to 'rock_artist_network.pkl'")
     
     # Also save as edge list for easier inspection
     with open('network_edges.txt', 'w', encoding='utf-8') as f:
