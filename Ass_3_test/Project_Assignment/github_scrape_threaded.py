@@ -14,7 +14,7 @@ TOKEN = os.getenv("TOKENLS")
 TOKEN1 = os.getenv("TOKENSS")
 TOKEN2 = os.getenv("TOKENLS1")
 TOKEN3 = os.getenv("TOKENSS1")
-#"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"
+
 HEAD = {"Accept": "application/vnd.github+json", **({"Authorization": f"token {TOKEN}"} if TOKEN else {})}
 HEAD1 = {"Accept": "application/vnd.github+json", **({"Authorization": f"token {TOKEN1}"} if TOKEN1 else {})}
 HEAD2 = {"Accept": "application/vnd.github+json", **({"Authorization": f"token {TOKEN2}"} if TOKEN2 else {})}
