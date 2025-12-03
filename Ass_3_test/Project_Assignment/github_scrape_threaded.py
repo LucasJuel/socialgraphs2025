@@ -7,6 +7,8 @@ import threading
 import pickle
 from dotenv import load_dotenv
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import signal, os, sys
+
 
 BASE = "https://api.github.com"
 load_dotenv()
@@ -19,6 +21,10 @@ HEAD = {"Accept": "application/vnd.github+json", **({"Authorization": f"token {T
 HEAD1 = {"Accept": "application/vnd.github+json", **({"Authorization": f"token {TOKEN1}"} if TOKEN1 else {})}
 HEAD2 = {"Accept": "application/vnd.github+json", **({"Authorization": f"token {TOKEN2}"} if TOKEN2 else {})}
 HEAD3 = {"Accept": "application/vnd.github+json", **({"Authorization": f"token {TOKEN3}"} if TOKEN3 else {})}
+
+HEAD_LIST = [HEAD, HEAD1, HEAD2, HEAD3]
+RATELIMIT_COUNTER = 0
+
 def parse_csv(file):
     data = []
     with open(file, 'r', encoding='utf-8') as f:
@@ -39,52 +45,87 @@ def parse_csv(file):
     return data
 
 
-def get_json(url, params=None, max_retries=20):
+save_lock = threading.Lock()  # shared global lock for file writes
+
+def save_repo_contribs(owner, repo, authors, emails, filename="contributors.json"):
+    entry = {
+        f"{owner}/{repo}": {
+            "authors": list(authors),
+            "emails": [list(e) for e in emails],
+        }
+    }
+
+    with save_lock:
+        # Load existing JSON safely
+        if os.path.exists(filename):
+            try:
+                with open(filename, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+            except Exception:
+                data = {}
+        else:
+            data = {}
+
+        # Merge / overwrite entry
+        data.update(entry)
+
+        # Write atomically
+        tmpfile = filename + ".tmp"
+        with open(tmpfile, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2)
+        os.replace(tmpfile, filename)
+
+        print(f"[save] {owner}/{repo} → {len(authors)} authors saved to {filename}")
+
+
+def get_json(url, params=None, max_retries=20, worker_id=0, stop_event=None):
     attempt = 0
-    HEADINT = HEAD
+    HEADINT = HEAD_LIST[worker_id % len(HEAD_LIST)]
     while True:
-        
         attempt += 1
         try:
-            if attempt % 4 == 1:
-                HEADINT = HEAD1
-                #print(f"[token switch] switching token for {url}")
-            elif attempt % 4 == 2:
-                HEADINT = HEAD2
-                #print(f"[token switch] switching token1 for {url}")
-            elif attempt % 4 == 3:
-                HEADINT = HEAD3
-                #print(f"[token switch] switching token2 for {url}")
-            else:
-                HEADINT = HEAD
-                #print(f"[token switch] switching token3 for {url}")
             r = requests.get(url, headers=HEADINT, params=params or {}, timeout=30)
-            #print(f"[request] {r.status_code} for token attempt {attempt} on {url} ")
         except requests.RequestException as e:
             if attempt <= max_retries:
                 time.sleep(min(2**attempt, 10))
-                continue
             print(f"[net] giving up on {url}: {e}")
-            return []
+            return None
+        
+        remaining = r.headers.get("X-RateLimit-Remaining")
+        if remaining is not None:
+            print(f"[rate] worker {worker_id} {url} remaining: {remaining}")
         # rate limit
         if r.status_code == 403 and "rate limit" in (r.text or "").lower():
             reset_ts = r.headers.get("X-RateLimit-Reset")
-            wait = min(max(0, int(reset_ts or 0) - int(time.time()) + 2), 20)
+
+            wait = max(0, int(reset_ts or 0) - int(time.time()) + 2)
             if attempt <= max_retries:
-                print(f"[ratelimit] waiting {wait}s for {url} on attempt {attempt}")
-                time.sleep(wait)
+                if stop_event is None:
+                    print(f"[ratelimit][worker {worker_id}] waiting {wait}s for {url} on attempt {attempt}")
+                    worker_id = worker_id + 1
+                    if worker_id % 6 == 0:
+                        worker_id = 0
+                    print(f"TOKEN SWAP TRYING IN 5")
+                    time.sleep(5)
+                else:
+                    if stop_event.wait(wait):
+                        print(f"[ratelimit][worker {worker_id}] woke up early due to stop event.")
+                        return None
                 continue
             print("[ratelimit] giving up")
-            return []
+            return None
         if r.status_code != 200:
+            SLEEPTIME = 5
             preview = (r.text or "")[:200].replace("\n", " ")
-            print(f"[error] {r.status_code} {r.reason} :: {url} :: {preview}...")
-            return []
+            print(f"[error] {r.status_code} {r.reason} from {url}: {preview}")
+            print(f"Since error wasnt 200 sleeping for {SLEEPTIME}")
+            time.sleep(SLEEPTIME)
+            return None
         try:
             return r.json()
         except ValueError:
             print(f"[decode] non-JSON from {url}")
-            return []
+            return None
 
 
 def get_repos(user, limit=None):
@@ -99,68 +140,90 @@ def get_all_commit_authors(owner, repo, max_threads=6):
     authors_global = set()
     emails_global = set()
     next_page = 1
-    stop = False
+    stop_event = threading.Event()
     lock = threading.Lock()
 
-    def worker():
-        nonlocal next_page, stop
-        local_authors = set()
+    def worker(worker_id):
+        print(f"[worker {worker_id}] started")
+        nonlocal next_page
+        local_auth = set() 
         local_emails = set()
 
-        while True:
+        while not stop_event.is_set():
             with lock:
-                if stop:
+                if stop_event.is_set():
                     break
                 page = next_page
                 next_page += 1
 
             if page % 50 == 0:
                 print(f"[commits] fetching page {page} for {owner}/{repo}")
+                #print(f"[commits] collected {len(global_author) + len(global_emails)} unique authors so far")
+
             
             data = get_json(
                 f"{BASE}/repos/{owner}/{repo}/commits",
                 params={"per_page": 100, "page": page},
+                worker_id=worker_id,
+                stop_event=stop_event
             )
 
+            if data is None:
+                stop_event.wait(0.5)
+                continue
+            
             if not data:
-                with lock:
-                    stop = True
+                stop_event.set()
                 break
 
             for commit in data:
                 if commit.get("author"):
                     login = commit["author"].get("login")
                     if login:
-                        local_authors.add(login)
+                        local_auth.add(login)
 
                 c = commit.get("commit", {}).get("author", {})
                 email = c.get("email")
                 name = c.get("name")
                 if email:
                     local_emails.add((name, email))
+                
 
+            with lock:
+                before = len(authors_global)
+                if local_auth:
+                    authors_global.update(local_auth)
+                    local_auth.clear()
+                if local_emails:
+                    emails_global.update(local_emails)
+                    local_emails.clear()
+                
+                after = len(authors_global)
+                if after >= 100 and not stop_event.is_set():
+                    print(f"[stop] reached {after} unique authors — stopping all workers.")
+                    stop_event.set()
+                
             if len(data) < 100:
-                with lock:
-                    stop = True
-                break
-
-            if len(local_authors) == 100:
-                with lock:
-                    stop = True
+                stop_event.set()
                 break
 
         with lock:
-            authors_global.update(local_authors)
-            emails_global.update(local_emails)
+            if local_auth:
+                authors_global.update(local_auth)
+            if local_emails:
+                emails_global.update(local_emails)
 
     threads = []
-    for _ in range(max_threads):
-        t = threading.Thread(target=worker, daemon=True)
+    for id in range(max_threads):
+        #Add argument worker_id=id to worqker function
+        t = threading.Thread(target=worker, args=[id], daemon=True)
         t.start()
         threads.append(t)
 
     for t in threads:
         t.join()
+
+    save_repo_contribs(owner, repo, authors_global, emails_global)
 
     return authors_global, emails_global
 
@@ -177,7 +240,7 @@ def get_contributors_with_fallback(owner, repo, limit=None, max_threads=6):
     
     while hasMore:
         data = get_json(f"{BASE}/repos/{owner}/{repo}/contributors", 
-                       {"per_page": 100, "page": page})
+                       {"per_page": 100, "page": page}, worker_id=1)
         
         # Check if repo is too large (403 error returns empty or error)
         if not data:
@@ -248,116 +311,116 @@ def process_user(user, depth, max_repos_per_user, max_contributors_per_repo):
     return user, results
 
 
-def crawl_from_repo_threaded(owner, repo_name,
-                              max_depth=3,
-                              max_users=500,
-                              max_repos_per_user=10,
-                              max_contributors_per_repo=50,
-                              max_threads=8):
-    """
-    Multithreaded BFS starting from a specific repo.
-    """
-    G = nx.Graph()
-    graph_lock = threading.Lock()
+# def crawl_from_repo_threaded(owner, repo_name,
+#                               max_depth=3,
+#                               max_users=500,
+#                               max_repos_per_user=10,
+#                               max_contributors_per_repo=50,
+#                               max_threads=8):
+#     """
+#     Multithreaded BFS starting from a specific repo.
+#     """
+#     G = nx.Graph()
+#     graph_lock = threading.Lock()
     
-    visited_users = set()
-    visited_repos = set()
-    visited_lock = threading.Lock()
+#     visited_users = set()
+#     visited_repos = set()
+#     visited_lock = threading.Lock()
     
-    processed_users = 0
-    processed_lock = threading.Lock()
+#     processed_users = 0
+#     processed_lock = threading.Lock()
     
-    # Get initial contributors from seed repo
-    print(f"[seed] Getting contributors from {owner}/{repo_name}")
-    seed_contribs = get_contributors_with_fallback(owner, repo_name, limit=max_contributors_per_repo)
+#     # Get initial contributors from seed repo
+#     print(f"[seed] Getting contributors from {owner}/{repo_name}")
+#     seed_contribs = get_contributors_with_fallback(owner, repo_name, limit=max_contributors_per_repo)
     
-    if not seed_contribs:
-        print("No contributors found for seed repo!")
-        return G
+#     if not seed_contribs:
+#         print("No contributors found for seed repo!")
+#         return G
     
-    # Add seed repo
-    full_name = f"{owner}/{repo_name}"
-    add_repo_clique(G, seed_contribs, full_name, graph_lock)
-    visited_repos.add(full_name)
+#     # Add seed repo
+#     full_name = f"{owner}/{repo_name}"
+#     add_repo_clique(G, seed_contribs, full_name, graph_lock)
+#     visited_repos.add(full_name)
     
-    # Initialize queue with seed contributors at depth 1
-    queue = collections.deque([(user, 1) for user in seed_contribs])
+#     # Initialize queue with seed contributors at depth 1
+#     queue = collections.deque([(user, 1) for user in seed_contribs])
     
-    while queue:
-        # Collect a batch of users to process in parallel
-        batch = []
-        with visited_lock:
-            while queue and len(batch) < max_threads:
-                user, depth = queue.popleft()
+#     while queue:
+#         # Collect a batch of users to process in parallel
+#         batch = []
+#         with visited_lock:
+#             while queue and len(batch) < max_threads:
+#                 user, depth = queue.popleft()
                 
-                if user in visited_users:
-                    continue
-                if depth > max_depth:
-                    continue
+#                 if user in visited_users:
+#                     continue
+#                 if depth > max_depth:
+#                     continue
                 
-                with processed_lock:
-                    if processed_users >= max_users:
-                        break
-                    processed_users += 1
-                    current_count = processed_users
+#                 with processed_lock:
+#                     if processed_users >= max_users:
+#                         break
+#                     processed_users += 1
+#                     current_count = processed_users
                 
-                visited_users.add(user)
-                batch.append((user, depth))
-                print(f"[queue] Added {user} (depth={depth}) to batch ({current_count}/{max_users})")
+#                 visited_users.add(user)
+#                 batch.append((user, depth))
+#                 print(f"[queue] Added {user} (depth={depth}) to batch ({current_count}/{max_users})")
         
-        if not batch:
-            break
+#         if not batch:
+#             break
         
-        # Process batch in parallel
-        print(f"\n[batch] Processing {len(batch)} users in parallel...")
+#         # Process batch in parallel
+#         print(f"\n[batch] Processing {len(batch)} users in parallel...")
         
-        with ThreadPoolExecutor(max_workers=max_threads) as executor:
-            futures = {
-                executor.submit(
-                    process_user, 
-                    user, 
-                    depth, 
-                    max_repos_per_user, 
-                    max_contributors_per_repo
-                ): (user, depth) 
-                for user, depth in batch
-            }
+#         with ThreadPoolExecutor(max_workers=max_threads) as executor:
+#             futures = {
+#                 executor.submit(
+#                     process_user, 
+#                     user, 
+#                     depth, 
+#                     max_repos_per_user, 
+#                     max_contributors_per_repo
+#                 ): (user, depth) 
+#                 for user, depth in batch
+#             }
             
-            for future in as_completed(futures):
-                user, depth = futures[future]
-                try:
-                    _, results = future.result()
+#             for future in as_completed(futures):
+#                 user, depth = futures[future]
+#                 try:
+#                     _, results = future.result()
                     
-                    for result in results:
-                        repo_full = result['repo_full_name']
-                        contribs = result['contributors']
+#                     for result in results:
+#                         repo_full = result['repo_full_name']
+#                         contribs = result['contributors']
                         
-                        with visited_lock:
-                            if repo_full in visited_repos:
-                                continue
-                            visited_repos.add(repo_full)
+#                         with visited_lock:
+#                             if repo_full in visited_repos:
+#                                 continue
+#                             visited_repos.add(repo_full)
                         
-                        print(f"  [repo] {repo_full} ({len(contribs)} contributors)")
-                        add_repo_clique(G, contribs, repo_full, graph_lock)
+#                         print(f"  [repo] {repo_full} ({len(contribs)} contributors)")
+#                         add_repo_clique(G, contribs, repo_full, graph_lock)
                         
-                        # Enqueue new contributors for next depth
-                        if depth + 1 <= max_depth:
-                            with visited_lock:
-                                for c in contribs:
-                                    if c not in visited_users:
-                                        queue.append((c, depth + 1))
+#                         # Enqueue new contributors for next depth
+#                         if depth + 1 <= max_depth:
+#                             with visited_lock:
+#                                 for c in contribs:
+#                                     if c not in visited_users:
+#                                         queue.append((c, depth + 1))
                     
-                    print(f"[done] Processed user {user}")
+#                     print(f"[done] Processed user {user}")
                     
-                except Exception as e:
-                    print(f"[error] Failed to process {user}: {e}")
+#                 except Exception as e:
+#                     print(f"[error] Failed to process {user}: {e}")
         
-        with processed_lock:
-            if processed_users >= max_users:
-                print(f"\n[limit] Reached max_users limit ({max_users})")
-                break
+#         with processed_lock:
+#             if processed_users >= max_users:
+#                 print(f"\n[limit] Reached max_users limit ({max_users})")
+#                 break
     
-    return G
+#     return G
 
 
 # ============ EVEN FASTER: Parallel repo processing within each user ============
@@ -518,6 +581,13 @@ if __name__ == "__main__":
     MAX_USERS = 200000
     MAX_REPOS_PER_USER = 20
     MAX_CONTRIBS_PER_REPO = 30
+
+    def handler(sig, frame):
+        print("\nForce exiting...")
+        sys.exit(0)
+
+    signal.signal(signal.SIGINT, handler)
+    signal.signal(signal.SIGTERM, handler)
     
     # Choose one:
     

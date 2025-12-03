@@ -1,0 +1,1486 @@
+{
+  "torvalds/linux": {
+    "authors": [
+      "jhovold",
+      "Caixinchen1",
+      "jarkkojs",
+      "shauryarane05",
+      "cmpute",
+      "tsbogend",
+      "jpoimboe",
+      "chenhuacai",
+      "willdeacon",
+      "virtuoso",
+      "ij-intel",
+      "eddyz87",
+      "sadelodun",
+      "x-y-z",
+      "deepanshu406",
+      "storulf",
+      "howlett",
+      "wusamuel6",
+      "skoralah",
+      "idryomov",
+      "toblux",
+      "ankitkhushwaha",
+      "tehcaster",
+      "Dwyane-Yan",
+      "Lawstorant",
+      "broonie",
+      "stuarthayhurst",
+      "ISCAS-Vulab",
+      "sre",
+      "marcosps",
+      "mszyprow",
+      "paulmckrcu",
+      "pv",
+      "oberpar",
+      "pcmoore",
+      "hcahca",
+      "mjguzik",
+      "eslammedhat",
+      "neilbrown",
+      "Hannibal404",
+      "ShuichengLin",
+      "jogness",
+      "gnitka",
+      "jk-ozlabs",
+      "tdz",
+      "tmuehlbacher",
+      "zx2c4",
+      "dhowells",
+      "mattrope",
+      "HoratiuVultur",
+      "kawasaki",
+      "Rtoax",
+      "jonhunter",
+      "gauravkohli1",
+      "idosch",
+      "harishchegondi",
+      "pip-izony",
+      "qc-azarrabi",
+      "stephensmalley",
+      "yosrym93",
+      "sayoojkkarun",
+      "covanam",
+      "UncleZI",
+      "diogoivo",
+      "rh-jkangas",
+      "marckleinebudde",
+      "pran005",
+      "hac-v",
+      "bonzini",
+      "superm1",
+      "zfellowes",
+      "qzhuo2",
+      "2045gemini",
+      "coiby",
+      "muenlin",
+      "edumazet",
+      "bp3tk0v",
+      "rohit-arm",
+      "Wer-Wolf",
+      "georgemoussalem",
+      "alexdeucher",
+      "ryncsn",
+      "vincentmli",
+      "igsilya",
+      "vincent-mailhol",
+      "airlied",
+      "ardbiesheuvel",
+      "srishanm",
+      "pdxChen",
+      "htejun",
+      "JonKohler",
+      "KAGA-KOKO",
+      "geertu",
+      "FirstLoveLife",
+      "andy-shev",
+      "bijudas",
+      "gcabiddu",
+      "SandyWinter",
+      "zlatistiv",
+      "takaswie",
+      "MTCoster",
+      "herbertx",
+      "mchehab",
+      "bhadanednyaneshwar",
+      "3V3RYONE",
+      "rafaeljw",
+      "soleen",
+      "AlanStern",
+      "robherring",
+      "gormanm",
+      "lumag",
+      "matttbe",
+      "benhor01",
+      "nayanavenkataramana",
+      "yghannam",
+      "hying-caritas",
+      "geomatsi",
+      "stefanhaRH",
+      "foxdrodd",
+      "vsyrjala",
+      "Siddharth-Vadapalli-at-TI",
+      "netoptimizer",
+      "Cryolitia",
+      "raven-au",
+      "sohilmeh",
+      "dianders",
+      "opsiff",
+      "isilence",
+      "xhackerustc",
+      "dangowrt",
+      "rddunlap",
+      "kparasur",
+      "AlekseiNikiforovIBM",
+      "nick650823",
+      "dtor",
+      "chleroy",
+      "anthonywong",
+      "GustavoARSilva",
+      "dubeyko",
+      "pmladek",
+      "bastien-curutchet",
+      "rchatre",
+      "icebergfu",
+      "atomic-kernel",
+      "pcacjr",
+      "Jiefeng-Zhang",
+      "rxrbln",
+      "james-c-linaro",
+      "maciej-w-rozycki",
+      "nxpfrankli",
+      "alistair23",
+      "q2ven",
+      "ChrisCH-Lu",
+      "kuba-moo",
+      "NXP-CarlosSong",
+      "jasowang",
+      "michchen-amd",
+      "cp0613",
+      "hkallweit",
+      "bvanassche",
+      "lucasdemarchi",
+      "ctmarinas",
+      "rocflyer1",
+      "6eanut",
+      "Werkov",
+      "torvalds",
+      "bjackman",
+      "Ansuel",
+      "glemco",
+      "Vudentz",
+      "akodanev",
+      "ea1davis",
+      "brauner",
+      "achartre",
+      "floatious",
+      "blocktrron",
+      "krzk",
+      "spandruvada",
+      "zenonxiu81",
+      "whot",
+      "YuryNorov",
+      "jtlayton",
+      "rikka0w0",
+      "SlarkXiao",
+      "etantilov",
+      "aegl",
+      "jmberg-intel",
+      "shayshyi",
+      "tq-steina",
+      "LorenzoBianconi",
+      "kaushlen",
+      "bibo-mao",
+      "babumoger",
+      "rbmcv73",
+      "bruce-awareit",
+      "mdchitale",
+      "mmhal",
+      "joannekoong",
+      "avagin",
+      "vladimiroltean",
+      "hfreude",
+      "arndb",
+      "sourabhjains",
+      "youngjuni",
+      "bebarino",
+      "akemnade",
+      "aheev",
+      "RichardWeiYang",
+      "sean-jc",
+      "axboe",
+      "olerem",
+      "flto",
+      "auldp",
+      "t-8ch"
+    ],
+    "emails": [
+      [
+        "Ian Kent",
+        "raven@themaw.net"
+      ],
+      [
+        "Venkata Ramana Nayana",
+        "venkata.ramana.nayana@intel.com"
+      ],
+      [
+        "Peter Zijlstra",
+        "peterz@infradead.org"
+      ],
+      [
+        "Darrick J. Wong",
+        "djwong@kernel.org"
+      ],
+      [
+        "Alistair Francis",
+        "alistair.francis@wdc.com"
+      ],
+      [
+        "Hao-Wen Ting",
+        "haowen.ting@realtek.com"
+      ],
+      [
+        "Xie Yuanbin",
+        "qq570070308@gmail.com"
+      ],
+      [
+        "Bibo Mao",
+        "maobibo@loongson.cn"
+      ],
+      [
+        "Lai Jiangshan",
+        "jiangshan.ljs@antgroup.com"
+      ],
+      [
+        "Srinivasan Shanmugam",
+        "srinivasan.shanmugam@amd.com"
+      ],
+      [
+        "Viacheslav Dubeyko",
+        "Slava.Dubeyko@ibm.com"
+      ],
+      [
+        "Peter Hutterer",
+        "peter.hutterer@who-t.net"
+      ],
+      [
+        "Paolo Abeni",
+        "pabeni@redhat.com"
+      ],
+      [
+        "Thomas Wei\u00dfschuh",
+        "linux@weissschuh.net"
+      ],
+      [
+        "Shin'ichiro Kawasaki",
+        "shinichiro.kawasaki@wdc.com"
+      ],
+      [
+        "Jarkko Sakkinen",
+        "jarkko@kernel.org"
+      ],
+      [
+        "Jens Axboe",
+        "axboe@kernel.dk"
+      ],
+      [
+        "Guopeng Zhang",
+        "zhangguopeng@kylinos.cn"
+      ],
+      [
+        "Maciej W. Rozycki",
+        "macro@orcam.me.uk"
+      ],
+      [
+        "Timur Krist\u00f3f",
+        "timur.kristof@gmail.com"
+      ],
+      [
+        "Shay Drory",
+        "shayd@nvidia.com"
+      ],
+      [
+        "Wei Yang",
+        "richard.weiyang@gmail.com"
+      ],
+      [
+        "James Morse",
+        "james.morse@arm.com"
+      ],
+      [
+        "Matt Roper",
+        "matthew.d.roper@intel.com"
+      ],
+      [
+        "Jianyun Gao",
+        "jianyungao89@gmail.com"
+      ],
+      [
+        "Pavel Zhigulin",
+        "Pavel.Zhigulin@kaspersky.com"
+      ],
+      [
+        "Biju Das",
+        "biju.das.jz@bp.renesas.com"
+      ],
+      [
+        "George Moussalem",
+        "george.moussalem@outlook.com"
+      ],
+      [
+        "Paul Moore",
+        "paul@paul-moore.com"
+      ],
+      [
+        "Shaurya Rane",
+        "ssrane_b23@ee.vjti.ac.in"
+      ],
+      [
+        "Rafael J. Wysocki",
+        "rafael.j.wysocki@intel.com"
+      ],
+      [
+        "Pratyush Yadav",
+        "pratyush@kernel.org"
+      ],
+      [
+        "Ville Syrj\u00e4l\u00e4",
+        "ville.syrjala@linux.intel.com"
+      ],
+      [
+        "Mark Brown",
+        "broonie@kernel.org"
+      ],
+      [
+        "Jonathan Marek",
+        "jonathan@marek.ca"
+      ],
+      [
+        "Sasha Levin",
+        "sashal@kernel.org"
+      ],
+      [
+        "ChiYuan Huang",
+        "cy_huang@richtek.com"
+      ],
+      [
+        "Yihang Li",
+        "liyihang9@h-partners.com"
+      ],
+      [
+        "Huang Ying",
+        "ying.huang@linux.alibaba.com"
+      ],
+      [
+        "Ilyas Gasanov",
+        "public@gsnoff.com"
+      ],
+      [
+        "Shuicheng Lin",
+        "shuicheng.lin@intel.com"
+      ],
+      [
+        "Jeremy Kerr",
+        "jk@codeconstruct.com.au"
+      ],
+      [
+        "Chris Lu",
+        "chris.lu@mediatek.com"
+      ],
+      [
+        "Frank Li",
+        "Frank.Li@nxp.com"
+      ],
+      [
+        "Chu Guangqing",
+        "chuguangqing@inspur.com"
+      ],
+      [
+        "Emil Tantilov",
+        "emil.s.tantilov@intel.com"
+      ],
+      [
+        "Naoki Ueki",
+        "naoki25519@gmail.com"
+      ],
+      [
+        "Dan Carpenter",
+        "dan.carpenter@linaro.org"
+      ],
+      [
+        "Joanne Koong",
+        "joannelkoong@gmail.com"
+      ],
+      [
+        "Avadhut Naik",
+        "avadhut.naik@amd.com"
+      ],
+      [
+        "Thomas Zimmermann",
+        "tzimmermann@suse.de"
+      ],
+      [
+        "Kai-Heng Feng",
+        "kaihengf@nvidia.com"
+      ],
+      [
+        "Borislav Petkov (AMD)",
+        "bp@alien8.de"
+      ],
+      [
+        "Yue Haibing",
+        "yuehaibing@huawei.com"
+      ],
+      [
+        "Enlin Mu",
+        "enlin.mu@unisoc.com"
+      ],
+      [
+        "Yang Shi",
+        "yang@os.amperecomputing.com"
+      ],
+      [
+        "Linus Torvalds",
+        "torvalds@linux-foundation.org"
+      ],
+      [
+        "Josh Poimboeuf",
+        "jpoimboe@kernel.org"
+      ],
+      [
+        "Johannes Berg",
+        "johannes.berg@intel.com"
+      ],
+      [
+        "Gabriele Monaco",
+        "gmonaco@redhat.com"
+      ],
+      [
+        "Sunday Adelodun",
+        "adelodunolaoluwa@yahoo.com"
+      ],
+      [
+        "Alexandra Winter",
+        "wintera@linux.ibm.com"
+      ],
+      [
+        "Ilya Maximets",
+        "i.maximets@ovn.org"
+      ],
+      [
+        "Nam Cao",
+        "namcao@linutronix.de"
+      ],
+      [
+        "Stuart Hayhurst",
+        "stuart.a.hayhurst@gmail.com"
+      ],
+      [
+        "Michal Luczaj",
+        "mhal@rbox.co"
+      ],
+      [
+        "Li Chen",
+        "chenl311@chinatelecom.cn"
+      ],
+      [
+        "Jeff Layton",
+        "jlayton@kernel.org"
+      ],
+      [
+        "Ally Heev",
+        "allyheev@gmail.com"
+      ],
+      [
+        "Carlos Llamas",
+        "cmllamas@google.com"
+      ],
+      [
+        "Dapeng Mi",
+        "dapeng1.mi@linux.intel.com"
+      ],
+      [
+        "Petr Mladek",
+        "pmladek@suse.com"
+      ],
+      [
+        "Vladimir Oltean",
+        "vladimir.oltean@nxp.com"
+      ],
+      [
+        "Harry Fellowes",
+        "harryfellowes1@gmail.com"
+      ],
+      [
+        "Wen Yang",
+        "wen.yang@linux.dev"
+      ],
+      [
+        "Wei Fang",
+        "wei.fang@nxp.com"
+      ],
+      [
+        "Dnyaneshwar Bhadane",
+        "dnyaneshwar.bhadane@intel.com"
+      ],
+      [
+        "Matthieu Baerts (NGI0)",
+        "matttbe@kernel.org"
+      ],
+      [
+        "Herbert Xu",
+        "herbert@gondor.apana.org.au"
+      ],
+      [
+        "Yifan Zha",
+        "Yifan.Zha@amd.com"
+      ],
+      [
+        "Anthony Wong",
+        "anthony.wong@ubuntu.com"
+      ],
+      [
+        "Carlos Song",
+        "carlos.song@nxp.com"
+      ],
+      [
+        "Huacai Chen",
+        "chenhuacai@loongson.cn"
+      ],
+      [
+        "Mohsin Bashir",
+        "mohsin.bashr@gmail.com"
+      ],
+      [
+        "Liam R. Howlett",
+        "Liam.Howlett@oracle.com"
+      ],
+      [
+        "Youngjun Park",
+        "youngjun.park@lge.com"
+      ],
+      [
+        "Stephen Eta Zhou",
+        "stephen.eta.zhou@gmail.com"
+      ],
+      [
+        "Devarsh Thakkar",
+        "devarsht@ti.com"
+      ],
+      [
+        "Srinivas Pandruvada",
+        "srinivas.pandruvada@linux.intel.com"
+      ],
+      [
+        "Geert Uytterhoeven",
+        "geert@linux-m68k.org"
+      ],
+      [
+        "Jesper Dangaard Brouer",
+        "hawk@kernel.org"
+      ],
+      [
+        "Eric Biggers",
+        "ebiggers@kernel.org"
+      ],
+      [
+        "Johan Hovold",
+        "johan@kernel.org"
+      ],
+      [
+        "Bartosz Golaszewski",
+        "bartosz.golaszewski@linaro.org"
+      ],
+      [
+        "Geert Uytterhoeven",
+        "geert+renesas@glider.be"
+      ],
+      [
+        "Tomasz Paku\u0142a",
+        "tomasz.pakula.oficjalny@gmail.com"
+      ],
+      [
+        "Stefan Hajnoczi",
+        "stefanha@redhat.com"
+      ],
+      [
+        "Kuniyuki Iwashima",
+        "kuniyu@google.com"
+      ],
+      [
+        "Sayooj K Karun",
+        "sayooj@aerlync.com"
+      ],
+      [
+        "Marcos Paulo de Souza",
+        "mpdesouza@suse.com"
+      ],
+      [
+        "Andrei Vagin",
+        "avagin@google.com"
+      ],
+      [
+        "Mateusz Guzik",
+        "mjguzik@gmail.com"
+      ],
+      [
+        "Christophe Leroy",
+        "christophe.leroy@csgroup.eu"
+      ],
+      [
+        "Bitterblue Smith",
+        "rtl8821cerfe2@gmail.com"
+      ],
+      [
+        "Andy Shevchenko",
+        "andriy.shevchenko@linux.intel.com"
+      ],
+      [
+        "Malaya Kumar Rout",
+        "mrout@redhat.com"
+      ],
+      [
+        "Dave Airlie",
+        "airlied@redhat.com"
+      ],
+      [
+        "Tim Chen",
+        "tim.c.chen@linux.intel.com"
+      ],
+      [
+        "Prike Liang",
+        "Prike.Liang@amd.com"
+      ],
+      [
+        "Smita Koralahalli",
+        "Smita.KoralahalliChannabasappa@amd.com"
+      ],
+      [
+        "Frederic Weisbecker",
+        "frederic@kernel.org"
+      ],
+      [
+        "Jason-JH Lin",
+        "jason-jh.lin@mediatek.com"
+      ],
+      [
+        "Jonathan Corbet",
+        "corbet@lwn.net"
+      ],
+      [
+        "Paolo Bonzini",
+        "pbonzini@redhat.com"
+      ],
+      [
+        "Ren\u00e9 Rebe",
+        "rene@exactco.de"
+      ],
+      [
+        "Marc Zyngier",
+        "maz@kernel.org"
+      ],
+      [
+        "Christian Brauner",
+        "brauner@kernel.org"
+      ],
+      [
+        "Neil Brown",
+        "neil@brown.name"
+      ],
+      [
+        "Giovanni Cabiddu",
+        "giovanni.cabiddu@intel.com"
+      ],
+      [
+        "Andreas Kemnade",
+        "andreas@kemnade.info"
+      ],
+      [
+        "Lorenzo Bianconi",
+        "lorenzo@kernel.org"
+      ],
+      [
+        "Ivan Zhaldak",
+        "i.v.zhaldak@gmail.com"
+      ],
+      [
+        "Yanzhu Huang",
+        "yanzhuhuang@linux.microsoft.com"
+      ],
+      [
+        "Tianchu Chen",
+        "flynnnchen@tencent.com"
+      ],
+      [
+        "Ma Ke",
+        "make24@iscas.ac.cn"
+      ],
+      [
+        "Niklas Cassel",
+        "cassel@kernel.org"
+      ],
+      [
+        "Slark Xiao",
+        "slark_xiao@163.com"
+      ],
+      [
+        "Samuel Wu",
+        "wusamuel@google.com"
+      ],
+      [
+        "Francesco Lavra",
+        "flavra@baylibre.com"
+      ],
+      [
+        "Deepanshu Kartikey",
+        "kartikey406@gmail.com"
+      ],
+      [
+        "Alan Stern",
+        "stern@rowland.harvard.edu"
+      ],
+      [
+        "Prateek Agarwal",
+        "praagarwal@nvidia.com"
+      ],
+      [
+        "Joakim Zhang",
+        "qiangqing.zhang@nxp.com"
+      ],
+      [
+        "Rohit Mathew",
+        "rohit.mathew@arm.com"
+      ],
+      [
+        "Gustavo A. R. Silva",
+        "gustavoars@kernel.org"
+      ],
+      [
+        "Jason A. Donenfeld",
+        "Jason@zx2c4.com"
+      ],
+      [
+        "Chen Ridong",
+        "chenridong@huawei.com"
+      ],
+      [
+        "Krzysztof Kozlowski",
+        "krzysztof.kozlowski@oss.qualcomm.com"
+      ],
+      [
+        "Seongsu Park",
+        "sgsu.park@samsung.com"
+      ],
+      [
+        "Ilya Dryomov",
+        "idryomov@gmail.com"
+      ],
+      [
+        "Marek Szyprowski",
+        "m.szyprowski@samsung.com"
+      ],
+      [
+        "Sebastian Reichel",
+        "sre@kernel.org"
+      ],
+      [
+        "Babu Moger",
+        "babu.moger@amd.com"
+      ],
+      [
+        "Cryolitia PukNgae",
+        "cryolitia.pukngae@linux.dev"
+      ],
+      [
+        "AngeloGioacchino Del Regno",
+        "angelogioacchino.delregno@collabora.com"
+      ],
+      [
+        "Sebastian Andrzej Siewior",
+        "bigeasy@linutronix.de"
+      ],
+      [
+        "James Clark",
+        "james.clark@linaro.org"
+      ],
+      [
+        "Zenon Xiu",
+        "zenonxiu@outlook.com"
+      ],
+      [
+        "Mayuresh Chitale",
+        "mchitale@ventanamicro.com"
+      ],
+      [
+        "Lushih Hsieh",
+        "bruce@mail.kh.edu.tw"
+      ],
+      [
+        "Bart Van Assche",
+        "bvanassche@acm.org"
+      ],
+      [
+        "Michal Koutn\u00fd",
+        "mkoutny@suse.com"
+      ],
+      [
+        "Jamie Iles",
+        "jamie.iles@oss.qualcomm.com"
+      ],
+      [
+        "Alexander Stein",
+        "alexander.stein@ew.tq-group.com"
+      ],
+      [
+        "Sergey Matyukevich",
+        "geomatsi@gmail.com"
+      ],
+      [
+        "Zi Yan",
+        "ziy@nvidia.com"
+      ],
+      [
+        "Christoph Hellwig",
+        "hch@lst.de"
+      ],
+      [
+        "Stephen Smalley",
+        "stephen.smalley.work@gmail.com"
+      ],
+      [
+        "Michael Chen",
+        "michael.chen@amd.com"
+      ],
+      [
+        "Fernando Fernandez Mancera",
+        "fmancera@suse.de"
+      ],
+      [
+        "Yazen Ghannam",
+        "yazen.ghannam@amd.com"
+      ],
+      [
+        "Pradyumn Rahar",
+        "pradyumn.rahar@oracle.com"
+      ],
+      [
+        "Edward Adam Davis",
+        "eadavis@qq.com"
+      ],
+      [
+        "Peter Oberparleiter",
+        "oberpar@linux.ibm.com"
+      ],
+      [
+        "Oleksij Rempel",
+        "o.rempel@pengutronix.de"
+      ],
+      [
+        "Ivan Lipski",
+        "ivan.lipski@amd.com"
+      ],
+      [
+        "Jiefeng Zhang",
+        "jiefeng.z.zhang@gmail.com"
+      ],
+      [
+        "Rong Tao",
+        "rongtao@cestc.cn"
+      ],
+      [
+        "Qiuxu Zhuo",
+        "qiuxu.zhuo@intel.com"
+      ],
+      [
+        "Siddharth Vadapalli",
+        "s-vadapalli@ti.com"
+      ],
+      [
+        "Aleksei Nikiforov",
+        "aleksei.nikiforov@linux.ibm.com"
+      ],
+      [
+        "Catalin Marinas",
+        "catalin.marinas@arm.com"
+      ],
+      [
+        "Pavel Begunkov",
+        "asml.silence@gmail.com"
+      ],
+      [
+        "Xu Yang",
+        "xu.yang_2@nxp.com"
+      ],
+      [
+        "Nicolas Frattaroli",
+        "nicolas.frattaroli@collabora.com"
+      ],
+      [
+        "Paul E. McKenney",
+        "paulmck@kernel.org"
+      ],
+      [
+        "Chen Pei",
+        "cp0613@linux.alibaba.com"
+      ],
+      [
+        "Takashi Sakamoto",
+        "o-takashi@sakamocchi.jp"
+      ],
+      [
+        "Horatiu Vultur",
+        "horatiu.vultur@microchip.com"
+      ],
+      [
+        "Ankit Khushwaha",
+        "ankitkhushwaha.linux@gmail.com"
+      ],
+      [
+        "Thomas Wei\u00dfschuh",
+        "thomas.weissschuh@linutronix.de"
+      ],
+      [
+        "Kaushlendra Kumar",
+        "kaushlendra.kumar@intel.com"
+      ],
+      [
+        "Armin Wolf",
+        "W_Armin@gmx.de"
+      ],
+      [
+        "Wake Liu",
+        "wakel@google.com"
+      ],
+      [
+        "Kanchana P Sridhar",
+        "kanchana.p.sridhar@intel.com"
+      ],
+      [
+        "Alex Deucher",
+        "alexander.deucher@amd.com"
+      ],
+      [
+        "Ard Biesheuvel",
+        "ardb@kernel.org"
+      ],
+      [
+        "Douglas Anderson",
+        "dianders@chromium.org"
+      ],
+      [
+        "Abdun Nihaal",
+        "nihaal@cse.iitm.ac.in"
+      ],
+      [
+        "Tejun Heo",
+        "tj@kernel.org"
+      ],
+      [
+        "David Howells",
+        "dhowells@redhat.com"
+      ],
+      [
+        "Pengfei Li",
+        "pengfei.li_1@nxp.com"
+      ],
+      [
+        "ke zijie",
+        "kezijie@leap-io-kernel.com"
+      ],
+      [
+        "Diogo Ivo",
+        "diogo.ivo@tecnico.ulisboa.pt"
+      ],
+      [
+        "Ewan D. Milne",
+        "emilne@redhat.com"
+      ],
+      [
+        "Florian Fuchs",
+        "fuchsfl@gmail.com"
+      ],
+      [
+        "Reinette Chatre",
+        "reinette.chatre@intel.com"
+      ],
+      [
+        "Jacob Zhong",
+        "cmpute@qq.com"
+      ],
+      [
+        "Nikola Z. Ivanov",
+        "zlatistiv@gmail.com"
+      ],
+      [
+        "Lucas De Marchi",
+        "lucas.demarchi@intel.com"
+      ],
+      [
+        "Alexander Shishkin",
+        "alexander.shishkin@linux.intel.com"
+      ],
+      [
+        "Kairui Song",
+        "kasong@tencent.com"
+      ],
+      [
+        "Sohil Mehta",
+        "sohil.mehta@intel.com"
+      ],
+      [
+        "Mikulas Patocka",
+        "mpatocka@redhat.com"
+      ],
+      [
+        "Jens Remus",
+        "jremus@linux.ibm.com"
+      ],
+      [
+        "Ben Horgan",
+        "ben.horgan@arm.com"
+      ],
+      [
+        "Will Deacon",
+        "will@kernel.org"
+      ],
+      [
+        "Peter Zijlstra (Intel)",
+        "peterz@infradead.org"
+      ],
+      [
+        "Gaurav Kohli",
+        "quic_gkohli@quicinc.com"
+      ],
+      [
+        "Arnd Bergmann",
+        "arnd@arndb.de"
+      ],
+      [
+        "Jason Wang",
+        "jasowang@redhat.com"
+      ],
+      [
+        "Pasha Tatashin",
+        "pasha.tatashin@soleen.com"
+      ],
+      [
+        "Yujie Zhang",
+        "yjzhang@leap-io-kernel.com"
+      ],
+      [
+        "Thomas M\u00fchlbacher",
+        "tmuehlbacher@posteo.net"
+      ],
+      [
+        "Kuppuswamy Sathyanarayanan",
+        "sathyanarayanan.kuppuswamy@linux.intel.com"
+      ],
+      [
+        "Jakub Kicinski",
+        "kuba@kernel.org"
+      ],
+      [
+        "Heiner Kallweit",
+        "hkallweit1@gmail.com"
+      ],
+      [
+        "Thomas Bogendoerfer",
+        "tsbogend@alpha.franken.de"
+      ],
+      [
+        "Vincent Mailhol",
+        "mailhol@kernel.org"
+      ],
+      [
+        "Haotian Zhang",
+        "vulab@iscas.ac.cn"
+      ],
+      [
+        "Yury Norov",
+        "yury.norov@gmail.com"
+      ],
+      [
+        "Randy Dunlap",
+        "rdunlap@infradead.org"
+      ],
+      [
+        "Coiby Xu",
+        "coxu@redhat.com"
+      ],
+      [
+        "Nikolay Borisov",
+        "nik.borisov@suse.com"
+      ],
+      [
+        "Mauro Carvalho Chehab",
+        "mchehab+huawei@kernel.org"
+      ],
+      [
+        "Matt Coster",
+        "matt.coster@imgtec.com"
+      ],
+      [
+        "John Ogness",
+        "john.ogness@linutronix.de"
+      ],
+      [
+        "Paulo Alcantara",
+        "pc@manguebit.org"
+      ],
+      [
+        "Thorsten Blum",
+        "thorsten.blum@linux.dev"
+      ],
+      [
+        "Alexandre Chartre",
+        "alexandre.chartre@oracle.com"
+      ],
+      [
+        "Jon Kohler",
+        "jon@nutanix.com"
+      ],
+      [
+        "Alexey Kodanev",
+        "aleksei.kodanev@bell-sw.com"
+      ],
+      [
+        "Harish Chegondi",
+        "harish.chegondi@intel.com"
+      ],
+      [
+        "Dev Jain",
+        "dev.jain@arm.com"
+      ],
+      [
+        "Mario Limonciello (AMD)",
+        "superm1@kernel.org"
+      ],
+      [
+        "Fangzhi Zuo",
+        "Jerry.Zuo@amd.com"
+      ],
+      [
+        "Beleswar Padhi",
+        "b-padhi@ti.com"
+      ],
+      [
+        "Brendan Jackman",
+        "jackmanb@google.com"
+      ],
+      [
+        "Zhao Yipeng",
+        "zhaoyipeng5@huawei.com"
+      ],
+      [
+        "Chen Ni",
+        "nichen@iscas.ac.cn"
+      ],
+      [
+        "Jared Kangas",
+        "jkangas@redhat.com"
+      ],
+      [
+        "Vincent Li",
+        "vincent.mc.li@gmail.com"
+      ],
+      [
+        "Bartosz Golaszewski",
+        "brgl@kernel.org"
+      ],
+      [
+        "Wentao Guan",
+        "guanwentao@uniontech.com"
+      ],
+      [
+        "Matthew Wilcox (Oracle)",
+        "willy@infradead.org"
+      ],
+      [
+        "Pranjal Shrivastava",
+        "praan@google.com"
+      ],
+      [
+        "Dmitry Baryshkov",
+        "dmitry.baryshkov@oss.qualcomm.com"
+      ],
+      [
+        "Chengkaitao",
+        "chengkaitao@kylinos.cn"
+      ],
+      [
+        "Yipeng Zou",
+        "zouyipeng@huawei.com"
+      ],
+      [
+        "Daniel Golle",
+        "daniel@makrotopia.org"
+      ],
+      [
+        "David Laight",
+        "david.laight.linux@gmail.com"
+      ],
+      [
+        "Alex Hung",
+        "alex.hung@amd.com"
+      ],
+      [
+        "Pengjie Zhang",
+        "zhangpengjie2@huawei.com"
+      ],
+      [
+        "Saket Kumar Bhaskar",
+        "skb99@linux.ibm.com"
+      ],
+      [
+        "Luiz Augusto von Dentz",
+        "luiz.von.dentz@intel.com"
+      ],
+      [
+        "Manish Nagar",
+        "manish.nagar@oss.qualcomm.com"
+      ],
+      [
+        "\u0141ukasz Bartosik",
+        "ukaszb@chromium.org"
+      ],
+      [
+        "Ilpo J\u00e4rvinen",
+        "ilpo.jarvinen@linux.intel.com"
+      ],
+      [
+        "Gui-Dong Han",
+        "hanguidong02@gmail.com"
+      ],
+      [
+        "Phil Auld",
+        "pauld@redhat.com"
+      ],
+      [
+        "Eslam Khafagy",
+        "eslam.medhat1993@gmail.com"
+      ],
+      [
+        "Ido Schimmel",
+        "idosch@nvidia.com"
+      ],
+      [
+        "Owen Gu",
+        "guhuinan@xiaomi.com"
+      ],
+      [
+        "Grzegorz Nitka",
+        "grzegorz.nitka@intel.com"
+      ],
+      [
+        "Krzysztof Kozlowski",
+        "krzysztof.kozlowski@linaro.org"
+      ],
+      [
+        "Cai Xinchen",
+        "caixinchen1@huawei.com"
+      ],
+      [
+        "Chao-ying Fu",
+        "cfu@wavecomp.com"
+      ],
+      [
+        "Mario Limonciello",
+        "mario.limonciello@amd.com"
+      ],
+      [
+        "Ingo Molnar",
+        "mingo@kernel.org"
+      ],
+      [
+        "Sourabh Jain",
+        "sourabhjain@linux.ibm.com"
+      ],
+      [
+        "Jiri Slaby (SUSE)",
+        "jirislaby@kernel.org"
+      ],
+      [
+        "Nick Hu",
+        "nick.hu@sifive.com"
+      ],
+      [
+        "Amirreza Zarrabi",
+        "amirreza.zarrabi@oss.qualcomm.com"
+      ],
+      [
+        "Askar Safin",
+        "safinaskar@gmail.com"
+      ],
+      [
+        "Jisheng Zhang",
+        "jszhang@kernel.org"
+      ],
+      [
+        "Zqiang",
+        "qiang.zhang@linux.dev"
+      ],
+      [
+        "Vlastimil Babka",
+        "vbabka@suse.cz"
+      ],
+      [
+        "Harald Freudenberger",
+        "freude@linux.ibm.com"
+      ],
+      [
+        "Stephen Boyd",
+        "sboyd@kernel.org"
+      ],
+      [
+        "Sean Christopherson",
+        "seanjc@google.com"
+      ],
+      [
+        "Christian Marangi",
+        "ansuelsmth@gmail.com"
+      ],
+      [
+        "Seungjin Bae",
+        "eeodqql09@gmail.com"
+      ],
+      [
+        "Pauli Virtanen",
+        "pav@iki.fi"
+      ],
+      [
+        "Thomas Gleixner",
+        "tglx@linutronix.de"
+      ],
+      [
+        "Niklas S\u00f6derlund",
+        "niklas.soderlund+renesas@ragnatech.se"
+      ],
+      [
+        "Rob Herring (Arm)",
+        "robh@kernel.org"
+      ],
+      [
+        "Danielle Costantino",
+        "dcostantino@meta.com"
+      ],
+      [
+        "Mel Gorman",
+        "mgorman@techsingularity.net"
+      ],
+      [
+        "Tony Luck",
+        "tony.luck@intel.com"
+      ],
+      [
+        "Yosry Ahmed",
+        "yosry.ahmed@linux.dev"
+      ],
+      [
+        "Lorenzo Pieralisi",
+        "lpieralisi@kernel.org"
+      ],
+      [
+        "Ulf Hansson",
+        "ulf.hansson@linaro.org"
+      ],
+      [
+        "Marc Kleine-Budde",
+        "mkl@pengutronix.de"
+      ],
+      [
+        "Bastien Curutchet (Schneider Electric)",
+        "bastien.curutchet@bootlin.com"
+      ],
+      [
+        "Jon Hunter",
+        "jonathanh@nvidia.com"
+      ],
+      [
+        "Shikang Fan",
+        "shikang.fan@amd.com"
+      ],
+      [
+        "Kiryl Shutsemau",
+        "kas@kernel.org"
+      ],
+      [
+        "Heiko Carstens",
+        "hca@linux.ibm.com"
+      ],
+      [
+        "Eduard Zingerman",
+        "eddyz87@gmail.com"
+      ],
+      [
+        "Henrique Carvalho",
+        "henrique.carvalho@suse.com"
+      ],
+      [
+        "Chenguang Zhao",
+        "zhaochenguang@kylinos.cn"
+      ],
+      [
+        "Jiakai Xu",
+        "jiakaipeanut@gmail.com"
+      ],
+      [
+        "Gang Yan",
+        "yangang@kylinos.cn"
+      ],
+      [
+        "NeilBrown",
+        "neil@brown.name"
+      ],
+      [
+        "Sam Protsenko",
+        "semen.protsenko@linaro.org"
+      ],
+      [
+        "Riwen Lu",
+        "luriwen@kylinos.cn"
+      ],
+      [
+        "Davidlohr Bueso",
+        "dave@stgolabs.net"
+      ],
+      [
+        "Dmitry Torokhov",
+        "dmitry.torokhov@gmail.com"
+      ],
+      [
+        "Eric Dumazet",
+        "edumazet@google.com"
+      ],
+      [
+        "Pingfan Liu",
+        "piliu@redhat.com"
+      ],
+      [
+        "Robert McClinton",
+        "rbmccav@gmail.com"
+      ],
+      [
+        "David Hildenbrand (Red Hat)",
+        "david@kernel.org"
+      ],
+      [
+        "ziming zhang",
+        "ezrakiez@gmail.com"
+      ],
+      [
+        "Andrey Vatoropin",
+        "a.vatoropin@crpt.ru"
+      ],
+      [
+        "Hang Zhou",
+        "929513338@qq.com"
+      ],
+      [
+        "David Bauer",
+        "mail@david-bauer.net"
+      ]
+    ]
+  }
+}
