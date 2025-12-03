@@ -1,0 +1,2 @@
+#Write gitignore file that excludes all .env files no matter the path
+**/.env
