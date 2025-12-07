@@ -32,7 +32,7 @@ def visualize_top_pyvis(G, top_n=100, filename="network_top.html"):
     )
     
     degrees_sub = dict(H.degree())
-    max_deg = max(degrees_sub.values())
+    max_deg = max(degrees_sub.values(), 0)
     
     # Color gradient based on degree
     for node in H.nodes():
