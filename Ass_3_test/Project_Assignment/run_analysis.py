@@ -22,6 +22,8 @@ def create_network_x_graph(data):
         stars = data[firstKey].get("stargazers_count", None)
         forks = data[firstKey].get("forks_count", None)
         language = data[firstKey].get("language", None)
+        if language is None:
+            continue
         authors = data[firstKey].get("authors", [])
         num_collab = data[firstKey].get("number_of_collaborators", 0)
         #print(f"Number of collaborators: {num_collab}, Authors: {authors}")
@@ -59,9 +61,6 @@ if __name__ == "__main__":
     data = load_from_json(FILE_URL)
     G = create_network_x_graph(data)
     print(f"Graph created with {G.number_of_nodes()} nodes and {G.number_of_edges()} edges.")
-    # Example: Print node attributes for the first node
-    first_node = list(G.nodes())[0]
-    print(f"Attributes of the first node ({first_node}): {G.nodes[first_node]}")
     # Visualize the graph (optional) with pyvis
     from pyvis.network import Network
     net = Network(notebook=True)
@@ -73,6 +72,7 @@ if __name__ == "__main__":
     print(f"Detected {len(community)} communities.")
     sorted_communities = [community for community in community if len(community) > 1]
     for i, comm in enumerate(sorted_communities):
+        # Find dominant language and purity
         langs = [G.nodes[n].get("language", "Unknown") for n in comm]
         counts = Counter(langs)
         dominant_lang, dominant_count = counts.most_common(1)[0]
@@ -82,6 +82,22 @@ if __name__ == "__main__":
         print(f"  Size: {len(comm)} repos")
         print(f"  Languages: {counts}")
         print(f"  Dominant language: {dominant_lang} ({purity:.2%} purity)")
+    
+    #Find average degree based on language
+    language_degrees = {}
+    for node, attrs in G.nodes(data=True):
+        lang = attrs.get("language", "Unknown")
+        degree = G.degree(node)
+        if lang not in language_degrees:
+            language_degrees[lang] = []
+        language_degrees[lang].append(degree)
+
+    print("\nAverage degree by programming language:")
+    for lang, degrees in language_degrees.items():
+        avg_degree = sum(degrees) / len(degrees)
+        print(f"  {lang}: {avg_degree:.2f}")
+
+        
     
 
 
