@@ -1,4 +1,5 @@
 # gh_collab_ultrafast.py
+import json
 import os
 import csv
 import requests
@@ -16,10 +17,8 @@ BASE = "https://api.github.com"
 load_dotenv()
 
 TOKENS = [
-    os.getenv("TOKENLS"),
-    os.getenv("TOKENSS"),
-    os.getenv("TOKENLS1"),
-    os.getenv("TOKENSS1"),
+    os.getenv("TOKENLX1"),
+    os.getenv("TOKENSX2"),
 ]
 
 HEADERS = [
@@ -28,12 +27,16 @@ HEADERS = [
     for t in TOKENS
 ]
 
-MAX_THREADS = 40   # concurrency level for crawling commits
+MAX_THREADS = 10   # concurrency level for crawling commits
 TIMEOUT = 15
+COUNTER = 0
 
 # ---------------------- HELPERS ----------------------
 
 def get_json(url, headers, params=None):
+    global COUNTER
+    COUNTER += 1
+    print(f"   [request #{COUNTER}]")
     try:
         r = requests.get(url, headers=headers, params=params or {}, timeout=TIMEOUT)
 
@@ -189,7 +192,7 @@ def load_repos_from_csv(path):
                 "forks": int(row["forks"]),
                 "language": row["language"],
             })
-    return repos[:1]
+    return repos
 
 
 # ---------------------- BUILD GRAPH ----------------------
@@ -205,10 +208,28 @@ def build_repo_graph(repos):
             print(f"[skip] no language for {full}, skipping...")
             continue
         print(f"\n[repo] fetching contributors for {full}")
-
+        
         contribs = get_contributors(full)
 
         # For each repo, add all nodal props and contribs to json
+
+        # --- create plain JSON dict of node properties (safe to serialize) ---
+    repos_json = {}
+    for node, attrs in G.nodes(data=True):
+        # copy attributes and make them JSON-serializable
+        serializable = {}
+        for k, v in attrs.items():
+            if isinstance(v, set):
+                serializable[k] = list(v)
+            else:
+                serializable[k] = v
+        # also store neighbor repos (optional)
+        serializable['neighbors'] = list(G[node].keys())
+        repos_json[node] = serializable
+
+    # write file
+    with open("repos_top_100_stars.json", "w", encoding="utf-8") as jf:
+        json.dump(repos_json, jf, indent=2, ensure_ascii=False)
 
 
         G.add_node(
