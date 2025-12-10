@@ -232,8 +232,9 @@ def build_repo_graph(repos):
             language = repo["language"]
 
             if not language:
-                print(f"[skip] no language for {full}, skipping...")
-                continue
+                print(f"[change] no language for {full}, adding to misc...")
+                repo["language"] = "Misc"
+                language = "Misc"
 
             print(f"\n[repo] fetching contributors for {full}")
             if repo["repo_full"] in existing_repos:
@@ -258,6 +259,10 @@ def build_repo_graph(repos):
             }
 
             print(f"[append] Added {full}")
+            existing_repos[full] = record
+            with open(JSON_PATH, "w", encoding="utf-8") as jf:
+                json.dump(list(existing_repos.values()), jf, indent=4)
+
 
 
             G.add_node(
