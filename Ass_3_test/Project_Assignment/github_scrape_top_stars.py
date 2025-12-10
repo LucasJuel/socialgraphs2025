@@ -3,7 +3,7 @@ import json
 import os
 import csv
 import requests
-import pickle
+import pickle, time
 import networkx as nx
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dotenv import load_dotenv
@@ -11,14 +11,20 @@ from dotenv import load_dotenv
 # ---------------------- CONFIG ----------------------
 CSV_FILE = "top-100-starred.csv"
 OUTFILE = "repo_collab_graph.pkl"
+JSON_PATH = "repos_top_100_stars.json"
+
 
 BASE = "https://api.github.com"
 
 load_dotenv()
 
 TOKENS = [
-    os.getenv("TOKENLX1"),
-    os.getenv("TOKENSX2"),
+    os.getenv("TOKENLS"),
+    os.getenv("TOKENSS"),
+    os.getenv("TOKENLS1"),
+    os.getenv("TOKENSS1"),
+    #os.getenv("TOKENX1"),
+    #os.getenv("TOKENX2"),
 ]
 
 HEADERS = [
@@ -27,34 +33,43 @@ HEADERS = [
     for t in TOKENS
 ]
 
-MAX_THREADS = 10   # concurrency level for crawling commits
+MAX_THREADS = 8   # concurrency level for crawling commits
 TIMEOUT = 15
 COUNTER = 0
 
 # ---------------------- HELPERS ----------------------
 
 def get_json(url, headers, params=None):
+    time.sleep(0.1)  # to avoid hitting rate limits too fast
     global COUNTER
     COUNTER += 1
+    hit_counter = 0
+    current_header = headers
+    rate_hit = True
     print(f"   [request #{COUNTER}]")
-    try:
-        r = requests.get(url, headers=headers, params=params or {}, timeout=TIMEOUT)
+    while rate_hit:
+        rate_hit = False
+        try:
+            r = requests.get(url, headers=current_header, params=params or {}, timeout=TIMEOUT)
 
-        if r.status_code == 403:
-            reset_ts = r.headers.get("X-RateLimit-Reset")
-            print(f"Resets {reset_ts}")
-            print(f"   [blocked] {r.json().get('message', '')}")
-            # get rate limit reset time
-            return None, r
+            if r.status_code == 403 and "rate limit" in (r.text or "").lower():
+                rate_hit = True
+                reset_ts = r.headers.get("X-RateLimit-Reset")
+                wait = max(0, int(reset_ts or 0) - int(time.time()) + 2)
+                print(f"[ratelimit] wait={wait}s url={url} message={r.json().get('message')}")
+                current_header = HEADERS[(COUNTER + 1) % len(HEADERS)]
+                hit_counter += 1
+                time.sleep(10)
+                continue
 
 
-        if r.status_code != 200:
-            return None, r
+            if r.status_code != 200:
+                return None, r
 
 
-        return r.json(), r
-    except:
-        return None, None
+            return r.json(), r
+        except:
+            return None, None
 
 
 def discover_total_commit_pages(owner, repo):
@@ -201,45 +216,58 @@ def build_repo_graph(repos):
     G = nx.Graph()
     print(f"[info] loading contributors for {len(repos)} repos")
 
-    for repo in repos:
-        full = repo["repo_full"]
-        language = repo["language"]
-        if language is None or language == "":
-            print(f"[skip] no language for {full}, skipping...")
-            continue
-        print(f"\n[repo] fetching contributors for {full}")
-        
-        contribs = get_contributors(full)
-
-        # For each repo, add all nodal props and contribs to json
-
-        # --- create plain JSON dict of node properties (safe to serialize) ---
-    repos_json = {}
-    for node, attrs in G.nodes(data=True):
-        # copy attributes and make them JSON-serializable
-        serializable = {}
-        for k, v in attrs.items():
-            if isinstance(v, set):
-                serializable[k] = list(v)
-            else:
-                serializable[k] = v
-        # also store neighbor repos (optional)
-        serializable['neighbors'] = list(G[node].keys())
-        repos_json[node] = serializable
-
-    # write file
-    with open("repos_top_100_stars.json", "w", encoding="utf-8") as jf:
-        json.dump(repos_json, jf, indent=2, ensure_ascii=False)
+    #Load existing repos from JSON to avoid re-fetching
+    if os.path.exists(JSON_PATH):
+        print(f"[info] loading existing repo data from {JSON_PATH}...")
+        with open(JSON_PATH, "r", encoding="utf-8") as jf:
+            existing_repos = json.load(jf)     
+            #print(existing_repos[:3])   
+            existing_repos = {record["repository"]: record for record in existing_repos}
 
 
-        G.add_node(
-            full,
-            contributors=contribs,
-            stars=repo["stars"],
-            forks=repo["forks"],
-            language=repo["language"],
-            number_of_collaborators=len(contribs)
-        )
+
+        for repo in repos:
+           
+            full = repo["repo_full"]
+            language = repo["language"]
+
+            if not language:
+                print(f"[skip] no language for {full}, skipping...")
+                continue
+
+            print(f"\n[repo] fetching contributors for {full}")
+            if repo["repo_full"] in existing_repos:
+                print(f"[skip] already have data for {repo['repo_full']}, skipping...")
+                contribs = existing_repos[repo["repo_full"]]["contributors"]
+            else: 
+                contribs = get_contributors(full)
+
+            repo_data = {}
+            for node, attrs in G.nodes(data=True):
+                serializable = {k: (list(v) if isinstance(v, set) else v) for k, v in attrs.items()}
+                serializable["neighbors"] = list(G[node].keys())
+                repo_data[node] = serializable
+
+            record = {
+                "repository": full,
+                "stars": repo["stars"],
+                "forks": repo["forks"],
+                "language": language,
+                "contributors": contribs,
+                "number_of_collaborators": len(contribs),
+            }
+
+            print(f"[append] Added {full}")
+
+
+            G.add_node(
+                full,
+                contributors=contribs,
+                stars=repo["stars"],
+                forks=repo["forks"],
+                language=repo["language"],
+                number_of_collaborators=len(contribs)
+            )
 
     print("\n[info] building edges...")
     nodes = list(G.nodes())
@@ -260,6 +288,7 @@ def build_repo_graph(repos):
 # ---------------------- MAIN ----------------------
 
 if __name__ == "__main__":
+    print("HEADERS:", HEADERS)
     repos = load_repos_from_csv(CSV_FILE)
     print(f"[csv] Loaded {len(repos)} repositories")
 
